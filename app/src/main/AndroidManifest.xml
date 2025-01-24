@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Servify"
         tools:targetApi="31">
         <activity
+            android:name=".SerUserSignupActivity"
+            android:exported="false" />
+        <activity
             android:name=".SerproSignupActivity"
             android:exported="false" />
         <activity
