@@ -143,7 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_10sdp"
-                android:hint="+91 XXXX XX XXXX"
+                android:hint="************"
                 android:background="#00000000"/>
 
         </LinearLayout>
