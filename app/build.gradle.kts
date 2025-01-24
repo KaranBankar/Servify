@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -43,6 +44,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.common.ktx)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -54,18 +56,5 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
 
-    implementation("com.google.firebase:firebase-database:20.3.0")
-
-// Firebase Realtime Database
-    implementation ("com.google.firebase:firebase-database-ktx")
-
-// Firebase Authentication
-    implementation ("com.google.firebase:firebase-auth-ktx")
-
-// Optional: Firebase Analytics (if you plan to use it)
-    implementation ("com.google.firebase:firebase-analytics-ktx")
-
-// Optional: Firebase Cloud Messaging (if you plan to use push notifications)
-    implementation ("com.google.firebase:firebase-messaging-ktx")
 
 }
