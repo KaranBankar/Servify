@@ -92,6 +92,7 @@
                 android:layout_marginLeft="@dimen/_10sdp"/>
 
             <EditText
+                android:id="@+id/etMobile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -140,6 +141,7 @@
                 android:layout_marginLeft="@dimen/_10sdp"/>
 
             <EditText
+                android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -162,6 +164,7 @@
         app:cardElevation="@dimen/_5sdp">
 
         <TextView
+            android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -183,17 +186,19 @@
         android:textSize="@dimen/_12sdp"/>
 
     <TextView
+        android:id="@+id/tv_service_pro_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up For Service Provider"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:drawableTop="5sdp"
+
         android:layout_marginTop="@dimen/_7sdp"
         android:layout_gravity="center"
         android:textSize="@dimen/_11sdp"/>
 
     <TextView
+        android:id="@+id/tv_service_user_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up For Service User"

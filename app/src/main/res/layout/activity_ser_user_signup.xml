@@ -63,6 +63,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"/>
 
                     <EditText
+                        android:id="@+id/etName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -106,6 +107,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"/>
 
                     <EditText
+                        android:id="@+id/etMobile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -149,6 +151,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"/>
 
                     <EditText
+                        android:id="@+id/etEmail"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -191,6 +194,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"/>
 
                     <EditText
+                        android:id="@+id/etAddress"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -225,6 +229,7 @@
                     android:layout_marginTop="@dimen/_10sdp">
 
                     <TextView
+                        android:id="@+id/btn_upload"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Upload"
@@ -234,8 +239,9 @@
                 </androidx.cardview.widget.CardView>
 
                 <ImageView
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_15sdp"
+                    android:id="@+id/businessImage"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_40sdp"
                     android:src="@drawable/image"
                     android:layout_marginTop="@dimen/_17sdp"
                     android:layout_marginLeft="@dimen/_5sdp"/>
@@ -276,6 +282,7 @@
                         android:layout_marginLeft="@dimen/_10sdp"/>
 
                     <EditText
+                        android:id="@+id/etPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -297,6 +304,7 @@
                 app:cardElevation="@dimen/_5sdp">
 
                 <TextView
+                    android:id="@+id/btn_signup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sign Up"
@@ -308,6 +316,8 @@
 
             </com.google.android.material.card.MaterialCardView>
             <TextView
+
+                android:id="@+id/tvLoginPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Allredy Have Account? Login"
