@@ -61,8 +61,10 @@ class SerproSignupActivity : AppCompatActivity() {
         binding.tvUpload.setOnClickListener {
             if (hasStoragePermission()) {
                 openImagePicker()
+                Toast.makeText(this,"ImagePicker",Toast.LENGTH_SHORT).show()
             } else {
                 requestStoragePermission()
+                Toast.makeText(this,"permission asking",Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -197,12 +199,14 @@ class SerproSignupActivity : AppCompatActivity() {
 
 // User data class to store the user details including image
 data class User1(
-    val name: String,
-    val email: String,
-    val mobile: String,
-    val address: String,
-    val password: String,
-    val image: String ,// Image URL or Base64 encoded string
-    val businessTitle:String,
-    val businessDescription: String
+    val name: String = "", // Provide default values
+    val email: String = "",
+    val mobile: String = "",
+    val address: String = "",
+    val password: String = "",
+    val image: String = "", // Image URL or Base64 encoded string
+    val businessTitle: String = "",
+    val businessDescription: String = ""
 )
+
+

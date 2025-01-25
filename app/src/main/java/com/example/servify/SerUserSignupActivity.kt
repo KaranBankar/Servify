@@ -60,8 +60,10 @@ class SerUserSignupActivity : AppCompatActivity() {
         binding.btnUpload.setOnClickListener {
             if (hasStoragePermission()) {
                 openImagePicker()
+                Toast.makeText(this,"ImagePicker",Toast.LENGTH_SHORT).show()
             } else {
                 requestStoragePermission()
+                Toast.makeText(this,"Permission Asking",Toast.LENGTH_SHORT).show()
             }
         }
     }

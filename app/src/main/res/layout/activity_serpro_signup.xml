@@ -312,13 +312,13 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="@dimen/_90sdp"
                 android:layout_height="@dimen/_32sdp"
+                android:id="@+id/tv_upload"
                 app:cardCornerRadius="@dimen/_5sdp"
                 android:backgroundTint="@color/blue"
                 android:layout_marginLeft="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp">
 
                 <TextView
-                    android:id="@+id/tv_upload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Upload"
@@ -329,8 +329,8 @@
 
                 <ImageView
                     android:id="@+id/et_businessImage"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_17sdp"
                     android:src="@drawable/image"
                     android:layout_marginTop="@dimen/_13sdp"
                     android:layout_marginLeft="@dimen/_5sdp"/>
