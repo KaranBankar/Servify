@@ -61,10 +61,8 @@ class SerproSignupActivity : AppCompatActivity() {
         binding.tvUpload.setOnClickListener {
             if (hasStoragePermission()) {
                 openImagePicker()
-                Toast.makeText(this,"ImagePicker",Toast.LENGTH_SHORT).show()
             } else {
                 requestStoragePermission()
-                Toast.makeText(this,"permission asking",Toast.LENGTH_SHORT).show()
             }
         }
     }

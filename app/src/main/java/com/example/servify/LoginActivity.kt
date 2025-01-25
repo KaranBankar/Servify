@@ -40,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
             navigateToHome()
             return
         }
-
         // Initialize Firebase Database
         databaseReference = FirebaseDatabase.getInstance().reference.child("users")
 

@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_80sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:orientation="horizontal">
 
         <ImageView
@@ -159,12 +160,13 @@
         android:layout_marginRight="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_30sdp"
         app:cardCornerRadius="@dimen/_8sdp"
+        android:id="@+id/btnLogin"
         app:strokeColor="@color/blue"
         android:backgroundTint="@color/blue"
         app:cardElevation="@dimen/_5sdp">
 
         <TextView
-            android:id="@+id/btnLogin"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
@@ -179,6 +181,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/donthaveacc"
         android:text="Don't have an Account?"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_7sdp"

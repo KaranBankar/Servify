@@ -14,7 +14,7 @@
         android:layout_height="@dimen/_100sdp"
         android:src="@drawable/servifylofo"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_210sdp"/>
+        android:layout_marginTop="@dimen/_230sdp"/>
     
     <TextView
         android:layout_width="wrap_content"
