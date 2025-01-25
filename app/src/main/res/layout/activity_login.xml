@@ -181,7 +181,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/donthaveacc"
+
         android:text="Don't have an Account?"
         android:textColor="@color/black"
         android:layout_marginTop="@dimen/_7sdp"
@@ -210,7 +210,5 @@
         android:layout_marginTop="@dimen/_7sdp"
         android:layout_gravity="center"
         android:textSize="@dimen/_11sdp"/>
+    </LinearLayout>
 
-
-
-</LinearLayout>

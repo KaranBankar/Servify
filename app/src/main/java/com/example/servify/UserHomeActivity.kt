@@ -39,6 +39,10 @@ class UserHomeActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE)
         val userName = sharedPreferences.getString(LoginActivity.KEY_USER_NAME, "User")
 
+        binding.btnTrackOrders.setOnClickListener {
+            val intent=Intent(this,UserTrackOrders::class.java)
+            startActivity(intent)
+        }
         // Initialize progress dialog
         progressDialog = ProgressDialog(this).apply {
             setMessage("Loading services...")
@@ -98,7 +102,7 @@ class UserHomeActivity : AppCompatActivity() {
                     val intent = Intent(this@UserHomeActivity, Feedback::class.java)
                     startActivity(intent)
                     // Handle Feedback click
-                   // Toast.makeText(this, "Feedback clicked", Toast.LENGTH_SHORT).show()
+                    // Toast.makeText(this, "Feedback clicked", Toast.LENGTH_SHORT).show()
                 }
                 R.id.nav_share -> {
                     // Share app on WhatsApp
@@ -144,6 +148,8 @@ class UserHomeActivity : AppCompatActivity() {
     }
 
     private fun fetchServiceProviders() {
+
+
         // Show the progress dialog
         progressDialog.show()
 

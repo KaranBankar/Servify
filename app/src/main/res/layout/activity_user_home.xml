@@ -28,6 +28,12 @@
             android:layout_height="@dimen/_25sdp"
             android:src="@drawable/live"
             android:layout_marginLeft="@dimen/_10sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,6 +42,28 @@
             android:layout_marginLeft="@dimen/_10sdp"
             android:textStyle="bold"
             android:text="Avaiable Services"/>
+
+            <LinearLayout
+                android:id="@+id/btn_track_orders"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/back_shape2"
+                android:backgroundTint="#FF0015"
+                android:gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Track Your Orders"
+                    android:textSize="@dimen/_15sdp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
 

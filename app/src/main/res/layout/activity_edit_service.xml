@@ -101,7 +101,7 @@
                     <EditText
                         android:id="@+id/et_Name"
                         android:textColor="@color/black"
-                        android:text="Chaitany Kakde"
+                        android:text="Name"
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_width="match_parent"
@@ -151,7 +151,7 @@
                         android:id="@+id/et_mobile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="9322067937"
+
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -198,7 +198,7 @@
                         android:id="@+id/et_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="chaitany@gamil.com"
+                        android:hint="example@gamil.com"
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -245,7 +245,6 @@
                         android:id="@+id/et_businessName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Agri Vision"
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -292,11 +291,56 @@
                         android:id="@+id/et_businessDescription"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="For farmers"
+
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:hint="Business Descrition"
+                        android:background="#00000000"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit Price"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_gravity="left"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:textSize="@dimen/_13sdp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:strokeColor="@color/blue"
+                android:backgroundTint="@color/white"
+                app:cardElevation="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/price"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/_10sdp"/>
+
+                    <EditText
+                        android:id="@+id/etPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:drawableRight="@drawable/edit"
+                        android:paddingRight="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:hint="Price"
                         android:background="#00000000"/>
 
                 </LinearLayout>
@@ -339,7 +383,7 @@
                         android:id="@+id/et_Address"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="At Sambhjinagar"
+
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"
@@ -350,47 +394,9 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Your Business Image"
-                android:textColor="@color/black"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_gravity="left"
-                android:layout_marginLeft="@dimen/_20sdp"
-                android:textSize="@dimen/_13sdp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="@dimen/_90sdp"
-                    android:layout_height="@dimen/_32sdp"
-                    app:cardCornerRadius="@dimen/_5sdp"
-                    android:backgroundTint="@color/blue"
-                    android:layout_marginLeft="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_5sdp">
 
-                    <TextView
-                        android:id="@+id/tv_upload"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Upload New"
-                        android:textColor="@color/white"
-                        android:layout_gravity="center"
-                        android:textSize="@dimen/_13sdp"/>
-                </androidx.cardview.widget.CardView>
-
-                <ImageView
-                    android:id="@+id/et_businessImage"
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/image"
-                    android:layout_marginTop="@dimen/_13sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"/>
-            </LinearLayout>
 
 
 
@@ -430,7 +436,7 @@
                         android:id="@+id/et_Password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Chai.,@123"
+                        android:text="*******"
                         android:drawableRight="@drawable/edit"
                         android:paddingRight="@dimen/_5sdp"
                         android:layout_marginLeft="@dimen/_10sdp"

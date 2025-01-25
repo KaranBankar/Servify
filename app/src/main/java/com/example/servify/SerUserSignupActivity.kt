@@ -5,11 +5,13 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
 import android.util.Patterns
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -25,7 +27,12 @@ class SerUserSignupActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySerUserSignupBinding
     private val READ_STORAGE_PERMISSION = android.Manifest.permission.READ_EXTERNAL_STORAGE
+    private val READ_MEDIA_IMAGES_PERMISSION = android.Manifest.permission.READ_MEDIA_IMAGES
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+
+    private val REQUEST_MEDIA_IMAGES_PERMISSION = 100
+    private val REQUEST_STORAGE_PERMISSION = 101
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,29 +65,63 @@ class SerUserSignupActivity : AppCompatActivity() {
 
         // Upload button to select image
         binding.btnUpload.setOnClickListener {
-            if (hasStoragePermission()) {
-                openImagePicker()
-                Toast.makeText(this,"ImagePicker",Toast.LENGTH_SHORT).show()
+            checkAndRequestPermissions()
+        }
+    }
+
+    // Check and request permissions based on Android version
+    private fun checkAndRequestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // For Android 13+ (API level 33 and above)
+            if (ContextCompat.checkSelfPermission(this, READ_MEDIA_IMAGES_PERMISSION)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(READ_MEDIA_IMAGES_PERMISSION),
+                    REQUEST_MEDIA_IMAGES_PERMISSION
+                )
             } else {
-                requestStoragePermission()
-                Toast.makeText(this,"Permission Asking",Toast.LENGTH_SHORT).show()
+                openImagePicker()
+            }
+        } else {
+            // For Android 12 (API level 32) and below
+            if (ContextCompat.checkSelfPermission(this, READ_STORAGE_PERMISSION)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(READ_STORAGE_PERMISSION),
+                    REQUEST_STORAGE_PERMISSION
+                )
+            } else {
+                openImagePicker()
             }
         }
     }
 
-    // Check if the app has storage permission
-    private fun hasStoragePermission(): Boolean {
-        return ContextCompat.checkSelfPermission(this, READ_STORAGE_PERMISSION) == PackageManager.PERMISSION_GRANTED
+    // Handle the permission request result
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_MEDIA_IMAGES_PERMISSION, REQUEST_STORAGE_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openImagePicker()
+                } else {
+                    Toast.makeText(this, "Permission denied. Unable to pick an image.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
-    // Request storage permission if not granted
-    private fun requestStoragePermission() {
-        ActivityCompat.requestPermissions(this, arrayOf(READ_STORAGE_PERMISSION), 1001)
-    }
-
-    // Open image picker to select an image
+    // Open image picker using the Storage Access Framework (SAF)
     private fun openImagePicker() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
         imagePickerLauncher.launch(intent)
     }
 
@@ -96,10 +137,10 @@ class SerUserSignupActivity : AppCompatActivity() {
         }
     }
 
-    // Display selected image in ImageView
+    // Display the selected image in the ImageView
     private fun displaySelectedImage(imageUri: Uri) {
         Glide.with(this).load(imageUri).into(binding.businessImage)
-        binding.businessImage.tag = imageUri // Store URI in tag to use later
+        binding.businessImage.tag = imageUri // Store the URI in tag for later use
     }
 
     // Convert image to Base64 format and save user data
@@ -121,22 +162,37 @@ class SerUserSignupActivity : AppCompatActivity() {
         val address = binding.etAddress.text.toString().trim()
         val password = binding.etPassword.text.toString().trim()
 
+
         val user = User(name, email, mobile, address, password, encodedImage)
 
         val databaseRef = FirebaseDatabase.getInstance().getReference("users")
 
-        // Save user data including image (Base64) to the database under mobile number key
-        databaseRef.child(mobile).setValue(user)
-            .addOnCompleteListener {
-                // Dismiss the ProgressDialog after data is saved
-                progressDialog.dismiss()
-                if (it.isSuccessful) {
-                    Toast.makeText(this, "User signed up successfully!", Toast.LENGTH_SHORT).show()
-                    // Navigate to another activity after successful signup
+        // Check if the user already exists
+        databaseRef.child(mobile).get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val dataSnapshot = task.result
+                if (dataSnapshot.exists()) {
+                    // User with this mobile number already exists
+                    progressDialog.dismiss()
+                    Toast.makeText(this, "User with this mobile number already exists.", Toast.LENGTH_SHORT).show()
                 } else {
-                    Toast.makeText(this, "Sign up failed. Please try again.", Toast.LENGTH_SHORT).show()
+                    // Save new user data
+                    databaseRef.child(mobile).setValue(user)
+                        .addOnCompleteListener { saveTask ->
+                            progressDialog.dismiss()
+                            if (saveTask.isSuccessful) {
+                                Toast.makeText(this, "User signed up successfully!", Toast.LENGTH_SHORT).show()
+                                // Navigate to another activity after successful signup
+                            } else {
+                                Toast.makeText(this, "Sign up failed. Please try again.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
                 }
+            } else {
+                progressDialog.dismiss()
+                Toast.makeText(this, "Error checking user existence. Please try again.", Toast.LENGTH_SHORT).show()
             }
+        }
     }
 
     // Validate inputs for the signup form
