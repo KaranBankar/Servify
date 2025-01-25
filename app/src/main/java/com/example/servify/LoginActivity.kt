@@ -1,10 +1,12 @@
 package com.example.servify
 
+
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.servify.databinding.ActivityLoginBinding
 import com.google.firebase.database.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -25,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
         private const val KEY_USER_TYPE = "userType"
         private const val KEY_MOBILE = "mobile"
         private const val KEY_PASSWORD = "password"
+
+        // New companion object for image, name, and email
+        const val KEY_USER_IMAGE = "userImage"  // base64 string for image
+        const val KEY_USER_NAME = "userName"
+        const val KEY_USER_EMAIL = "userEmail"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,10 +99,13 @@ class LoginActivity : AppCompatActivity() {
                     if (snapshot.exists()) {
                         val dbPassword = snapshot.child("password").value as? String
                         val businessTitle = snapshot.child("businessTitle").value as? String
+                        val name = snapshot.child("name").value as? String
+                        val email = snapshot.child("email").value as? String
+                        val imageBase64 = snapshot.child("image").value as? String // Base64 image string
 
                         if (dbPassword == password) {
                             val userType = if (!businessTitle.isNullOrEmpty()) "business" else "normal"
-                            saveLoginDetails(mobile, password, userType)
+                            saveLoginDetails(mobile, password, userType, name, email, imageBase64)
                             navigateToHome()
                         } else {
                             Toast.makeText(this@LoginActivity, "Incorrect password. Please try again.", Toast.LENGTH_SHORT).show()
@@ -109,12 +122,21 @@ class LoginActivity : AppCompatActivity() {
             })
     }
 
-    private fun saveLoginDetails(mobile: String, password: String, userType: String) {
+    private fun saveLoginDetails(mobile: String, password: String, userType: String, name: String?, email: String?, imageBase64: String?) {
         with(sharedPreferences.edit()) {
             putBoolean(KEY_IS_LOGGED_IN, true)
             putString(KEY_MOBILE, mobile)
             putString(KEY_PASSWORD, password)
             putString(KEY_USER_TYPE, userType)
+
+            // Save name and email
+            if (!name.isNullOrEmpty()) putString(KEY_USER_NAME, name)
+            if (!email.isNullOrEmpty()) putString(KEY_USER_EMAIL, email)
+
+            // Save image as base64 string (optional)
+            if (!imageBase64.isNullOrEmpty()) {
+                putString(KEY_USER_IMAGE, imageBase64)
+            }
             apply()
         }
     }
