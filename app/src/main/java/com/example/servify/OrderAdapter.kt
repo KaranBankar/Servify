@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.servify.Order
 import com.example.servify.R
@@ -30,6 +31,12 @@ class OrderAdapter(private val orderList: List<Order>, private val context: Cont
         holder.tvMobile.text = "Mobile: " + (order.userContact ?: "No Mobile")
         holder.tvAddress.text = "Address: " + (order.userAddress ?: "No Address")
         holder.tvPrice.text = "Price: " + (order.price ?: "No Price")
+        if (order.completionStatus == "Completed") {
+            holder.btn_Status.text = "Completed"
+            holder.btnMessage.isEnabled = false
+            holder.cardviewStatus.setCardBackgroundColor(context.getColor(R.color.green))
+            holder.cardviewStatus.backgroundTintList = context.getColorStateList(R.color.green)
+        }
 
         // Set the OnClickListener for the message button
         holder.btnMessage.setOnClickListener {
@@ -69,6 +76,9 @@ class OrderAdapter(private val orderList: List<Order>, private val context: Cont
         var tvMobile: TextView = itemView.findViewById(R.id.tvMobile)
         var tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
         var tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
-        var btnMessage: TextView= itemView.findViewById(R.id.btnMessage)  // Reference to the button
+        var btnMessage: TextView= itemView.findViewById(R.id.btnMessage)
+        var cardviewStatus:CardView=itemView.findViewById(R.id.cardViewStatus)
+        var btn_Status:TextView=itemView.findViewById(R.id.btnStatus)
+        // Reference to the button
     }
 }

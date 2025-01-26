@@ -183,6 +183,8 @@ class SerUserSignupActivity : AppCompatActivity() {
                             if (saveTask.isSuccessful) {
                                 Toast.makeText(this, "User signed up successfully!", Toast.LENGTH_SHORT).show()
                                 // Navigate to another activity after successful signup
+                                startActivity(Intent(this@SerUserSignupActivity, LoginActivity::class.java))
+                                finish()
                             } else {
                                 Toast.makeText(this, "Sign up failed. Please try again.", Toast.LENGTH_SHORT).show()
                             }
